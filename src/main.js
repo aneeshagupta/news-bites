@@ -1,8 +1,7 @@
 function svc_search_v2_articlesearch(jsonObj) { 
 		var num = jsonObj.response.docs.length
 		for(i = 0; i<num; i++ ) {
-			document.getElementById('search-results').innerHTML += ' <a href = '+ jsonObj.response.docs[i].web_url+'>'+jsonObj.response.docs[i].headline.print_headline+ '</a>'; 
-			document.getElementById('search-results').innerHTML +=  '</br>'; 
+			document.getElementById('search-results').innerHTML += ' <a href = '+ jsonObj.response.docs[i].web_url+'>'+jsonObj.response.docs[i].headline.print_headline+ '</a> </br> '; 
 		}
 }
 
