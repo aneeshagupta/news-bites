@@ -9,11 +9,14 @@
 
 	#search-box button{
   		margin:	10px 0px;
+      padding-left: 10px; 
   	}
-  	#search-results{
+
+  #search-results{
   		margin-top:	20px;
-  	}
-  	.headlines { 
+    }
+
+  .headlines { 
   		 font-size: 20px;
   		 background-color: #33CCCC; 
   		 border-style: solid;
@@ -21,15 +24,22 @@
    		 border-color: white; 
    		 color: black;
    		 padding: 4px;
+       width: 610px;
   	}
-		table, thead, tbody, tr, td, th{
-  		border: 1px solid #CCC;
-  		border-collapse: collapse;
-  		text-align: center;
+
+  #results { 
+  		float: left;
   	}
-  	th, td {
-  		padding: 10px;
+
+  .abstracts { 
+  		font-size: 18px; 
+  		background-color: white; 
+  		width: 599px;
+      padding: 5px;
   	}
+
+
+
   </style>
 </head>
 <body>
@@ -41,7 +51,9 @@
 		<button id="search-btn">Search</button>
 	</div>
 
+	<div id = "results"> 
 
+	</div> 
 
 
 </head> 
