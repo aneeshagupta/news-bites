@@ -25,19 +25,19 @@
   #search-results{
     margin-left: 20px; 
   		margin-top:	20px;
-  }
+    }
 
 
   #results { 
   		float: left;
-  	}
+    }
 
   .abstracts { 
   		font-size: 18px; 
   		background-color: white; 
   		width: 599px;
       padding: 5px;
-  	}
+   }
 
   .headlines { 
       margin-left: 20px; 
@@ -49,13 +49,11 @@
       border-color: white; 
       color: black;
       width: 610px;
-
-  }
+    }
 
   #menu { 
     margin-left: 20px; 
-
-  }
+    }
 
   </style>
 
@@ -63,23 +61,29 @@
     <script src = "main.js"> </script> 
     <script src = "../bootstrap/js/bootstrap.min.js"> </script> 
 </head>
-<body>
+<body>    
 
 	<h1>NewsBites</h1>
 
+</br> 
+
   <div id = "menu"> 
-
-    <button id = "politics" class="btn btn-default"> Politics </button> 
-    <button id = "sports" class="btn btn-default"> Sports </button> 
-    <button id = "international" class="btn btn-default"> International </button> 
-
+    <button id = "politics"  class="btn btn-primary navbar-btn"> Politics </button> 
+    <button id = "sports"  class="btn btn-primary navbar-btn"> Sports </button> 
+    <button id = "international"  class="btn btn-primary navbar-btn"> International </button>    
+    <button id = "tech"  class="btn btn-primary navbar-btn"> Technology </button>      
+    <button id = "health"  class="btn btn-primary navbar-btn"> Health </button>     
+    <button id = "science"  class="btn btn-primary navbar-btn"> Science </button>    
+    <button id = "travel"  class="btn btn-primary navbar-btn"> Travel </button> 
+    <button id = "business"  class="btn btn-primary navbar-btn"> Business </button>    
   </div> 
 
 </br> 
 
 	<div id="search-box">
 		Search: <input type="text" id="search-term"> 
-		<br/>
+   </br> 
+		
 		<button id="search-btn" class="btn btn-default">Search</button> 
 	</div>
 
