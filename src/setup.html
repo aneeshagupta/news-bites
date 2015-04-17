@@ -2,30 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title> News </title> 
-	<script src = "http://code.jquery.com/jquery-1.11.2.js"> </script> 
-	<script src = "main.js"> </script> 
+
+  <link href = "../bootstrap/css/bootstrap.min.css" rel = "stylesheet"> 
 	
 <style> 
+
+  h1 { 
+    margin-top: 30px; 
+    margin-left: 20px;  
+  }
 
 	#search-box button{
   		margin:	10px 0px;
       padding-left: 10px; 
   	}
 
-  #search-results{
-  		margin-top:	20px;
+    #search-box{ 
+      margin-left: 20px; 
+
     }
 
-  .headlines { 
-  		 font-size: 20px;
-  		 background-color: #33CCCC; 
-  		 border-style: solid;
-   		 border-width: 2px;
-   		 border-color: white; 
-   		 color: black;
-   		 padding: 4px;
-       width: 610px;
-  	}
+  #search-results{
+    margin-left: 20px; 
+  		margin-top:	20px;
+  }
+
 
   #results { 
   		float: left;
@@ -38,7 +39,8 @@
       padding: 5px;
   	}
 
-  .home { 
+  .headlines { 
+      margin-left: 20px; 
       font-size: 18px; 
       background-color: #CCFFFF; 
       padding: 5px;
@@ -50,9 +52,16 @@
 
   }
 
+  #menu { 
+    margin-left: 20px; 
 
+  }
 
   </style>
+
+    <script src = "http://code.jquery.com/jquery-1.11.2.js"> </script> 
+    <script src = "main.js"> </script> 
+    <script src = "../bootstrap/js/bootstrap.min.js"> </script> 
 </head>
 <body>
 
@@ -60,9 +69,9 @@
 
   <div id = "menu"> 
 
-    <button id = "politics"> Politics </button> 
-    <button id = "sports"> Sports </button> 
-    <button id = "international"> International </button> 
+    <button id = "politics" class="btn btn-default"> Politics </button> 
+    <button id = "sports" class="btn btn-default"> Sports </button> 
+    <button id = "international" class="btn btn-default"> International </button> 
 
   </div> 
 
@@ -71,7 +80,7 @@
 	<div id="search-box">
 		Search: <input type="text" id="search-term"> 
 		<br/>
-		<button id="search-btn">Search</button> 
+		<button id="search-btn" class="btn btn-default">Search</button> 
 	</div>
 
 	<div id = "results"> 

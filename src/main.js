@@ -5,7 +5,6 @@ var result = {
 	abstract: ''
 };
 
-
 function svc_search_v2_articlesearch(jsonObj) { 
 		var num = jsonObj.response.docs.length
 		for(i = 0; i<num; i++ ) { 
@@ -29,23 +28,7 @@ function svc_search_v2_articlesearch(jsonObj) {
 			alert("No results fit that search criteria.  Please search for something else"); 
 		}
 
-		for(i=0; i<num; i++) { 
-			var item = "result"+i; 
-			var description = "abstract"+i; 
-
-			$('#results').append($('#'+item));
-			$('#'+item).addClass("headlines"); 
-			$('#'+item).html(search_results[i].name); 
-
-			$('#'+item).append($('#'+description)); 
-			$('#'+description).addClass("abstracts"); 
-			$('#'+description).html(search_results[i].abstract); 
-			$('#'+description).hide(); 
-
-			$('#'+item).click(function(){
-				$(this).children().first().slideToggle();  //prints out abstracts for each individual div 
-			});
-		}
+		load_links(); 
 }
 
 function svc_mostpopular_v2_mostviewed(jsonObj) { 
@@ -63,27 +46,10 @@ function svc_mostpopular_v2_mostviewed(jsonObj) {
 		var jDiv = document.createElement('div'); 
 		jDiv.id = 'abstract'+i; 
 		document.getElementsByTagName('body')[0].appendChild(jDiv); 
-
-		console.log(result.name); 
 	}
+	load_links(); 
 
-		for(i=0; i<10; i++) { 
-			var item = "result"+i; 
-			var description = "abstract"+i; 
-
-			$('#results').append($('#'+item));
-			$('#'+item).addClass("home"); 
-			$('#'+item).html(search_results[i].name); 
-
-			$('#'+item).append($('#'+description)); 
-			$('#'+description).addClass("abstracts"); 
-			$('#'+description).html(search_results[i].abstract); 
-			$('#'+description).hide(); 
-
-			$('#'+item).click(function(){
-				$(this).children().first().slideToggle();  //prints out abstracts for each individual div 
-			});
-	}
+		
 }
 
 $(function(){
@@ -127,6 +93,26 @@ function change_headline(keyword) {
 	script.src = source; 
 	$('head').append(script); 
 
+}
+
+function load_links() { 
+	for(i=0; i<10; i++) { 
+		var item = "result"+i; 
+		var description = "abstract"+i; 
+
+		$('#results').append($('#'+item));
+		$('#'+item).addClass("headlines"); 
+		$('#'+item).html(search_results[i].name); 
+
+		$('#'+item).append($('#'+description)); 
+		$('#'+description).addClass("abstracts"); 
+		$('#'+description).html(search_results[i].abstract); 
+		$('#'+description).hide(); 
+
+		$('#'+item).click(function(){
+			$(this).children().first().slideToggle();  //prints out abstracts for each individual div 
+		});
+	}
 }
 
 
