@@ -65,7 +65,10 @@ $(function() {
 		search_results = []; 
 		$("#results").empty(); 
 		var searchTerm = $('#search-term').val(); 
-	
+		if(searchTerm=='') { 
+			alert("Please enter a search criteria"); 
+			return; 
+		}
 		searchTerm = searchTerm.replace(/\s/g, '+'); 
 		var searchSrc = 'http://api.nytimes.com/svc/search/v2/articlesearch.jsonp?callback=svc_search_v2_articlesearch&q='+searchTerm+'&begin_date=20150101&end_date=20150412&api-key=1005f771230760e52cd130064324c61d%3A19%3A71800087';
 		var searchScript = document.createElement('script'); 
@@ -74,33 +77,7 @@ $(function() {
 	}); 
 }); 
 
-$(function(){
-	$('#sports').click(function(){
-		change_headline('sports'); 
-	}); 
-	$('#politics').click(function(){
-		change_headline('politics'); 
-	}); 
-	$('#international').click(function(){
-		change_headline('international'); 
-	}); 
-	$('#tech').click(function(){
-		change_headline('technology'); 
-	}); 
-	$('#health').click(function(){
-		change_headline('health'); 
-	});
-	$('#science').click(function(){
-		change_headline('science'); 
-	});  
-	$('#travel').click(function(){
-		change_headline('travel'); 
-	}); 
-	$('#business').click(function(){
-		change_headline('business'); 
-	}); 
 
-}); 
 
 function change_headline(keyword) { 
 	$('#results').empty(); 
@@ -122,7 +99,7 @@ function load_links() {
 
 		$('#'+item).append($('#'+description)); 
 		$('#'+description).addClass("abstracts"); 
-		$('#'+description).html(search_results[i].abstract+' </br> <a href = " '+search_results[i].link+' "> Read More </a> ' ); 
+		$('#'+description).html(search_results[i].abstract+' </br> <div align = "right"> <a href = " '+search_results[i].link+' " target="_blank"> Read More </a> </div> ' ); 
 		$('#'+description).hide(); 
 
 		$('#'+item).click(function(){
