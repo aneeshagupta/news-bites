@@ -3,7 +3,9 @@
 <head>
 	<title> News </title> 
 
-  <link href = "../bootstrap/css/bootstrap.min.css" rel = "stylesheet"> 
+  <link href = "../bootstrap/css/bootstrap.min.css" rel = "stylesheet">
+  <link href="http://code.jboxcdn.com/0.3.2/jBox.css" rel="stylesheet"> 
+
 	
 <style> 
 
@@ -11,6 +13,12 @@
     margin-top: 30px; 
     margin-left: 20px;  
   }
+
+  h4 { 
+    margin-top: 30px; 
+    margin-left: 20px; 
+  }
+
 
 	#search-box button{
   		margin:	10px 0px;
@@ -55,11 +63,25 @@
     margin-left: 20px; 
     }
 
+  #search-term { 
+    margin-top: 9px; 
+  }
+
+span {
+  display: inline-block;
+  width: 800px;
+  height: 10px;
+}
+
   </style>
 
-    <script src = "http://code.jquery.com/jquery-1.11.2.js"> </script> 
-    <script src = "main.js"> </script> 
-    <script src = "../bootstrap/js/bootstrap.min.js"> </script> 
+  <script src = "http://code.jquery.com/jquery-1.11.2.js"> </script> 
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src = "main.js"> </script> 
+  <script src = "../bootstrap/js/bootstrap.min.js"> </script> 
+ 
+ 
+
 </head>
 <body>    
 
@@ -68,29 +90,34 @@
 </br> 
 
   <div id = "menu"> 
-    <button id = "politics"  class="btn btn-primary navbar-btn" onclick = "change_headline('politics');"> Politics </button> 
-    <button id = "sports"  class="btn btn-primary navbar-btn" onclick = "change_headline('sports');"> Sports </button> 
-    <button id = "international"  class="btn btn-primary navbar-btn" onclick = "change_headline('international');"> International </button>    
-    <button id = "tech"  class="btn btn-primary navbar-btn" onclick = "change_headline('technology');"> Technology </button>      
-    <button id = "health"  class="btn btn-primary navbar-btn" onclick = "change_headline('health');"> Health </button>     
-    <button id = "science"  class="btn btn-primary navbar-btn" onclick = "change_headline('science');"> Science </button>    
-    <button id = "travel"  class="btn btn-primary navbar-btn" onclick = "change_headline('travel');"> Travel </button> 
-    <button id = "business"  class="btn btn-primary navbar-btn" onclick = "change_headline('business');"> Business </button>    
+    <button id = "politics"  class="btn btn-primary navbar-btn" onclick = "change_headline('Politics');"> Politics </button> 
+    <button id = "sports"  class="btn btn-primary navbar-btn" onclick = "change_headline('Sports');"> Sports </button> 
+    <button id = "international"  class="btn btn-primary navbar-btn" onclick = "change_headline('International');"> International </button>    
+    <button id = "tech"  class="btn btn-primary navbar-btn" onclick = "change_headline('Technology');"> Technology </button>      
+    <button id = "health"  class="btn btn-primary navbar-btn" onclick = "change_headline('Health');"> Health </button>     
+    <button id = "science"  class="btn btn-primary navbar-btn" onclick = "change_headline('Science');"> Science </button>    
+    <button id = "travel"  class="btn btn-primary navbar-btn" onclick = "change_headline('Travel');"> Travel </button> 
+    <button id = "business"  class="btn btn-primary navbar-btn" onclick = "change_headline('Business');"> Business </button> 
+    
   </div> 
 
 </br> 
-
+ 
 	<div id="search-box">
 		Search: <input type="text" id="search-term"> 
-   </br> 
-		
-		<button id="search-btn" class="btn btn-default">Search</button> 
+   
+		<button id="search-btn" class="btn btn-default" >Search</button> 
+
 	</div>
 
-	<div id = "results"> 
+  <div id = "head"> 
+    <h4> Today's Headlines </h4> 
+  </div> 
+
+
+	<div id = "results" data-toggle="tooltip" container: "body" data-delay='{"show": 500 , "hide": 300}' data-placement="top" title="Click on each headline for more information"> 
 
 	</div> 
-
 
 </head> 
 </html> 

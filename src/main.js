@@ -6,40 +6,39 @@ var result = {
 };
 
 function svc_search_v2_articlesearch(jsonObj) { 
-		var num = jsonObj.response.docs.length
-		for(i = 0; i<num; i++ ) { 
-			var result = new Object(); 
-			result.name = jsonObj.response.docs[i].headline.main; 
-			result.link = jsonObj.response.docs[i].web_url; 
-			result.abstract = jsonObj.response.docs[i].abstract; 
-			if(result.abstract == null) { 
-				result.abstract = jsonObj.response.docs[i].snippet; 
-			}
-			search_results.push(result); 
-			var iDiv = document.createElement('div');  //creates div for each search result 
-			iDiv.id = 'result'+i; 
-			document.getElementsByTagName('body')[0].appendChild(iDiv); //appends div to HTML 
-
-			var jDiv = document.createElement('div'); 
-			jDiv.id = 'abstract'+i; 
-			document.getElementsByTagName('body')[0].appendChild(jDiv); 
+	var num = jsonObj.response.docs.length
+	for(i = 0; i<num; i++ ) { 
+		var result = new Object(); 
+		result.name = jsonObj.response.docs[i].headline.main; 
+		result.link = jsonObj.response.docs[i].web_url; 
+		result.abstract = jsonObj.response.docs[i].abstract; 
+		if(result.abstract == null) { 
+			result.abstract = jsonObj.response.docs[i].snippet; 
 		}
-		if(search_results.length == 0) { 
-			alert("No results fit that search criteria.  Please search for something else"); 
-		}
+		search_results.push(result); 
+		var iDiv = document.createElement('div');  //creates div for each search result 
+		iDiv.id = 'result'+i; 
+		document.getElementsByTagName('body')[0].appendChild(iDiv); //appends div to HTML 
 
-		load_links(); 
+		var jDiv = document.createElement('div'); 
+		jDiv.id = 'abstract'+i; 
+		document.getElementsByTagName('body')[0].appendChild(jDiv); 
+	}
+	if(search_results.length == 0) { 
+		alert("No results fit that search criteria.  Please search for something else"); 
+	}
+
+	load_links(); 
 }
 
 function svc_mostpopular_v2_mostviewed(jsonObj) { 
 	var num = jsonObj.num_results; 
-	for(i=0; i<10; i++) { 
+	for(i=0; i<20; i++) { 
 		var result = new Object(); 
 		result.name = jsonObj.results[i].title;
 		result.abstract = jsonObj.results[i].abstract; 
 		result.link = jsonObj.results[i].url; 
 		search_results.push(result); 
-
 		var iDiv = document.createElement('div');  //creates div for each search result 
 		iDiv.id = 'result'+i; 
 		document.getElementsByTagName('body')[0].appendChild(iDiv); 
@@ -49,8 +48,6 @@ function svc_mostpopular_v2_mostviewed(jsonObj) {
 		document.getElementsByTagName('body')[0].appendChild(jDiv); 
 	}
 	load_links(); 
-
-		
 }
 
 $(function(){
@@ -62,6 +59,7 @@ $(function(){
 
 $(function() { 	
 	$('#search-btn').click( function(){
+		$('#head').hide();
 		search_results = []; 
 		$("#results").empty(); 
 		var searchTerm = $('#search-term').val(); 
@@ -80,19 +78,23 @@ $(function() {
 
 
 function change_headline(keyword) { 
+	$('#head').show(); 
+	$('#head').html('<h4> ' +keyword+ ' headlines </h4'); 
 	$('#results').empty(); 
 	search_results = []; 
-	var source = 'http://api.nytimes.com/svc/mostpopular/v2/mostviewed/'+keyword+'/1.jsonp?callback=svc_mostpopular_v2_mostviewed&api-key=76807123647841a8459032ebe54c5969%3A11%3A71800087';
+	var new_key = keyword.toLowerCase(); 
+	var source = 'http://api.nytimes.com/svc/mostpopular/v2/mostviewed/'+new_key+'/1.jsonp?callback=svc_mostpopular_v2_mostviewed&api-key=76807123647841a8459032ebe54c5969%3A11%3A71800087';
 	var script = document.createElement('script'); 
 	script.src = source; 
 	$('head').append(script); 
+	
 }
 
 function load_links() { 
-	for(i=0; i<10; i++) { 
+	var show = false; 
+	for(i=0; i<20; i++) { 
 		var item = "result"+i; 
 		var description = "abstract"+i; 
-
 		$('#results').append($('#'+item));
 		$('#'+item).addClass("headlines"); 
 		$('#'+item).html(search_results[i].name); 
@@ -107,6 +109,16 @@ function load_links() {
 		});
 	}
 }
+
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+   $( "#datepicker" ).datepicker();
+})
+
+
+
+
 
 
 
