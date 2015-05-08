@@ -25,15 +25,15 @@ function svc_search_v2_articlesearch(jsonObj) {
 		document.getElementsByTagName('body')[0].appendChild(jDiv); 
 	}
 	if(search_results.length == 0) { 
-		alert("No results fit that search criteria.  Please search for something else"); 
+		alert("No results fit that search criteria.  Please search for something else. "); 
 	}
 
 	load_links(); 
 }
 
 function svc_mostpopular_v2_mostviewed(jsonObj) { 
-	var num = jsonObj.num_results; 
-	for(i=0; i<20; i++) { 
+	var num = jsonObj.num_results;
+	for(i=0; i<10; i++) { 
 		var result = new Object(); 
 		result.name = jsonObj.results[i].title;
 		result.abstract = jsonObj.results[i].abstract; 
@@ -62,24 +62,56 @@ $(function() {
 		$('#head').hide();
 		search_results = []; 
 		$("#results").empty(); 
+		var message = ''; 
 		var searchTerm = $('#search-term').val(); 
+		var startDate = $('#start_date').val(); 
+		var endDate = $('#end_date').val(); 
+		var today = new Date();  //get today's date 
+		var dd = today.getDate(); 
+		var mm = today.getMonth()+1; 
+		var yyyy = today.getFullYear(); 
+		if(dd<10){
+        	dd='0'+dd
+    	} 
+    	if(mm<10){
+        	mm='0'+mm
+    	} 
+    	var todayDate = yyyy+'-'+mm+'-'+dd; 
+    	if(todayDate < endDate) { 
+    		message += "Invalid end date. "; 
+    	}
+    	if(todayDate < startDate) { 
+    		message += "Invalid start date. "; 
+    	}
+    	if(endDate < startDate) { 
+    		message += "Please make sure your end date is after your start date. " 
+    	}
 		if(searchTerm=='') { 
-			alert("Please enter a search criteria"); 
+			message += "Please enter a search criteria.  "; 
+		}
+		if(endDate == '') { 
+			message += "Please enter an end date.  "; 
+		}
+		if(startDate == '') { 
+			message += "Please enter a start date.  "; 
+		}
+		if(message != '') { 
+			alert(message); 
 			return; 
 		}
+		var firstDate = startDate.replace(/-/g, ''); 
+		var secondDate = endDate.replace(/-/g, ''); 
 		searchTerm = searchTerm.replace(/\s/g, '+'); 
-		var searchSrc = 'http://api.nytimes.com/svc/search/v2/articlesearch.jsonp?callback=svc_search_v2_articlesearch&q='+searchTerm+'&begin_date=20150101&end_date=20150412&api-key=1005f771230760e52cd130064324c61d%3A19%3A71800087';
+		var searchSrc = 'http://api.nytimes.com/svc/search/v2/articlesearch.jsonp?callback=svc_search_v2_articlesearch&q='+searchTerm+'&begin_date='+firstDate+'&end_date='+secondDate+'&api-key=1005f771230760e52cd130064324c61d%3A19%3A71800087';
 		var searchScript = document.createElement('script'); 
 		searchScript.src = searchSrc; 
 		$('head').append(searchScript); 
 	}); 
 }); 
 
-
-
 function change_headline(keyword) { 
 	$('#head').show(); 
-	$('#head').html('<h4> ' +keyword+ ' headlines </h4'); 
+	$('#head').html('<h4> ' +keyword+ ' Headlines </h4'); 
 	$('#results').empty(); 
 	search_results = []; 
 	var new_key = keyword.toLowerCase(); 
@@ -87,12 +119,11 @@ function change_headline(keyword) {
 	var script = document.createElement('script'); 
 	script.src = source; 
 	$('head').append(script); 
-	
 }
 
 function load_links() { 
 	var show = false; 
-	for(i=0; i<20; i++) { 
+	for(i=0; i<10; i++) { 
 		var item = "result"+i; 
 		var description = "abstract"+i; 
 		$('#results').append($('#'+item));
@@ -101,24 +132,12 @@ function load_links() {
 
 		$('#'+item).append($('#'+description)); 
 		$('#'+description).addClass("abstracts"); 
-		$('#'+description).html(search_results[i].abstract+' </br> <div align = "right"> <a href = " '+search_results[i].link+' " target="_blank"> Read More </a> </div> ' ); 
+		$('#'+description).html(search_results[i].abstract+ ' </br> <div align = "right">  <a href = " '+search_results[i].link+' " target="_blank"> Read More </a> </div> ' ); 
 		$('#'+description).hide(); 
 
 		$('#'+item).click(function(){
 			$(this).children().first().slideToggle();  //prints out abstracts for each individual div 
 		});
 	}
-}
-
-
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-   $( "#datepicker" ).datepicker();
-})
-
-
-
-
-
-
+}	
 
