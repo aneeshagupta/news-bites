@@ -21,26 +21,30 @@
     margin-left: 20px; 
   }
 
+  h5 { 
+    margin-left: 20px; 
+    margin-top: 5px; 
+  }
 
 	#search-box button{
   		margin:	10px 0px;
       padding-left: 10px; 
-  	}
+  }
 
-    #search-box{ 
-      margin-left: 20px; 
-
-    }
+   #search-box{ 
+       margin-left: 20px; 
+       float: left;
+  }
 
   #search-results{
-    margin-left: 20px; 
-  		margin-top:	20px;
-    }
+     margin-left: 20px; 
+  	 margin-top:	20px;
+  }
 
 
   #results { 
-  		float: left;
-    }
+  	float: left;
+  }
 
   .abstracts { 
   		font-size: 18px; 
@@ -87,6 +91,7 @@ span {
 <body>    
 
 	<h1>NewsBites</h1>
+  <h5> Click on each headline for more information! </h5> 
 
 </br> 
 
@@ -106,23 +111,26 @@ span {
 
 </br> 
  
+    <div id = "head"> 
+    <h4> Today's Headlines </h4> 
+  </div> 
+    <div id = "results"> 
+
+  </div> 
+
 	<div id="search-box">
-		Search: <input type="text" id="search-term"/> </br> 
-    From: <input type = "text" id = "start_date" data-beatpicker="true" style = "width: 100px"/> 
-    To: <input type = "text" id = "end_date" data-beatpicker="true" style = "width: 100px"/> 
+		Search: </br> <input type="text" id="search-term"/> </br> 
+    Start Date: <input type = "text" id = "start_date" data-beatpicker="true" style = "width: 100px"/> 
+    End Date: <input type = "text" id = "end_date" data-beatpicker="true" style = "width: 100px"/> 
    
 		<button id="search-btn" class="btn btn-default" >Search</button> 
 
 	</div>
 
-  <div id = "head"> 
-    <h4> Today's Headlines </h4> 
-  </div> 
 
 
-	<div id = "results"> 
 
-	</div> 
+
 
 </head> 
 </html> 

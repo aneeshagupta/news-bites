@@ -47,6 +47,7 @@ function svc_mostpopular_v2_mostviewed(jsonObj) {
 		jDiv.id = 'abstract'+i; 
 		document.getElementsByTagName('body')[0].appendChild(jDiv); 
 	}
+
 	load_links(); 
 }
 
@@ -134,10 +135,9 @@ function load_links() {
 		$('#'+description).addClass("abstracts"); 
 		$('#'+description).html(search_results[i].abstract+ ' </br> <div align = "right">  <a href = " '+search_results[i].link+' " target="_blank"> Read More </a> </div> ' ); 
 		$('#'+description).hide(); 
-
+		
 		$('#'+item).click(function(){
 			$(this).children().first().slideToggle();  //prints out abstracts for each individual div 
 		});
 	}
 }	
-
